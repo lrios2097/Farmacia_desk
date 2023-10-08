@@ -1,7 +1,7 @@
 
 package main;
 
-import views.loginView;
+import views.LoginView;
 
 /**
  *
@@ -10,7 +10,7 @@ import views.loginView;
 public class main {
     public static void main(String[] args) {
         //instanciar el login para que se ejecute primero
-        loginView login = new loginView();
+        LoginView login = new LoginView();
         login.setVisible(true);
     }
     

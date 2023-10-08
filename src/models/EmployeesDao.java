@@ -51,21 +51,23 @@ public class EmployeesDao {
                 employee.setId(rs.getInt("id"));
                 id_user = employee.getId();
                 employee.setFull_name(rs.getString("full_name"));
+                System.out.println("ID del usuario: " + id_user);
                 full_name_user = employee.getFull_name();
-                employee.setFull_name(rs.getString("username"));
+                employee.setUsername(rs.getString("username"));
                 username_user = employee.getUsername();
-                employee.setFull_name(rs.getString("address"));
+                employee.setAddress(rs.getString("address"));
                 addres_user = employee.getAddress();
-                employee.setFull_name(rs.getString("telephone"));
+                employee.setTelephone(rs.getString("telephone"));
                 telephone_user = employee.getTelephone();
-                employee.setFull_name(rs.getString("email"));
+                employee.setEmail(rs.getString("email"));
                 email_user = employee.getEmail();
-                employee.setFull_name(rs.getString("rol"));
+                employee.setRol(rs.getString("rol"));
                 rol_user = employee.getRol();
             }
             
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al opbtener al empleado " + e);
+            JOptionPane.showMessageDialog(null, "Error al obtener al empleado " + e);
+            e.printStackTrace();
         }
         return employee;
     }
@@ -101,7 +103,7 @@ public class EmployeesDao {
     public List listEmployeesQuery (String value) {
         List<Employees> list_employees = new ArrayList();
         String query = "SELECT * FROM employees ORDER BY rol ASC";
-        String query_search_employees = "SELECT *FROM employees WHERE id LIKE '%"+ value + "%"; 
+        String query_search_employees = "SELECT *FROM employees WHERE id LIKE '%"+ value + "%'";
         
         try {
             conn = cn.getConnection();
@@ -115,13 +117,13 @@ public class EmployeesDao {
         // va a recorrer siempre que hayan registros
         while(rs.next()){
             Employees employee = new Employees();
-            employee.setId(rs.getInt("Id"));
-            employee.setFull_name(rs.getString("username"));
+            employee.setId(rs.getInt("id"));
+            employee.setFull_name(rs.getString("full_name"));
             employee.setUsername(rs.getString("username"));
-            employee.setAddress(rs.getString("username"));
-            employee.setTelephone(rs.getString("username"));
-            employee.setEmail(rs.getString("username"));
-            employee.setRol(rs.getString("username"));
+            employee.setAddress(rs.getString("address"));
+            employee.setTelephone(rs.getString("telephone"));
+            employee.setEmail(rs.getString("email"));
+            employee.setRol(rs.getString("rol"));
             list_employees.add(employee); // agregamos cada 1 de los empleados a la lisa 
         }
             
@@ -133,7 +135,7 @@ public class EmployeesDao {
     
     //ModificarEmpleado
     public boolean updateEmployeeQuery(Employees employee){
-        String query = "UPDATE employees SET full_name = ?, username = ?, address = ?, telephone = ?, email = ?, rol = ?, updated = ? +"
+        String query = "UPDATE employees SET full_name = ?, username = ?, address = ?, telephone = ?, email = ?, rol = ?, updated = ?"
                 + "where ID=?";
         // esto es para created y updated
         Timestamp datetime = new Timestamp(new Date().getTime()); //UsamosTomestamp de SQL, no olvidar que se necesita importar manualmente las de sql, revisar arriba

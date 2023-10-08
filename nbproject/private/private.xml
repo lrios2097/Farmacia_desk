@@ -6,19 +6,19 @@
             <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/main/main.java</file>
             <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/models/Employees.java</file>
             <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/models/Customers.java</file>
+            <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/controller/LoginController.java</file>
             <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/controller/settingsController.java</file>
             <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/models/Purchases.java</file>
             <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/models/CustomersDao.java</file>
             <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/models/CategoriesDao.java</file>
-            <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/views/systemView.java</file>
             <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/models/SuppliersDao.java</file>
-            <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/models/Products.java</file>
-            <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/models/ProductDao.java</file>
+            <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/views/LoginView.java</file>
             <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/models/SalesDao.java</file>
             <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/models/ConnectionMySQL.java</file>
             <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/models/PurchasesDao.java</file>
             <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/models/Suppliers.java</file>
-            <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/views/loginView.java</file>
+            <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/controller/EmployeesController.java</file>
+            <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/views/SystemView.java</file>
             <file>file:/C:/Users/luisr/Documents/NetBeansProjects/Farmacia_desk/src/models/EmployeesDao.java</file>
         </group>
     </open-files>

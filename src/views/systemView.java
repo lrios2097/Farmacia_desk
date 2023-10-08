@@ -4,27 +4,47 @@
  */
 package views;
 
+import controller.EmployeesController;
 import controller.settingsController;
+import models.Employees;
+import models.EmployeesDao;
+import static models.EmployeesDao.full_name_user;
+import static models.EmployeesDao.rol_user;
 
 /**
  *
  * @author luisr
  */
-public class systemView extends javax.swing.JFrame {
+public class SystemView extends javax.swing.JFrame {
 
     /**
      * Creates new form systemView
      */
-    public systemView() {
+    //empleados
+    Employees employees = new Employees();
+    EmployeesDao employeesDao = new EmployeesDao();
+    public SystemView() {
         initComponents();
         setSize(1208,680);
         setResizable(false);
         setTitle("Panel de Administración");
         setLocationRelativeTo(null); // para que este centrado
         
+        titleInterface(); // para el perfil (rol y user)
         //Controller del Settings
         settingsController setting = new settingsController(this); //en el this le pasamos la vista, esta clase
         this.repaint(); // para aplicar los cambios 
+        
+        //Controlador de Empleado
+        EmployeesController employee_account = new EmployeesController (employees, employeesDao, this);
+        employee_account.listAllEmployess();
+    }
+    
+    public String titleInterface(){
+        setTitle("Panel - " + rol_user);
+        labelNameEmployee.setText(full_name_user);
+        labelNameRol.setText(rol_user);
+        return rol_user.trim();
     }
 
     /**
@@ -45,8 +65,8 @@ public class systemView extends javax.swing.JFrame {
         jLabelShop = new javax.swing.JLabel();
         jPanelCustomers = new javax.swing.JPanel();
         jLabelCustomers = new javax.swing.JLabel();
-        jPanelEmployers = new javax.swing.JPanel();
-        jLabelEmployers = new javax.swing.JLabel();
+        jPanelEmployees = new javax.swing.JPanel();
+        jLabelEmployees = new javax.swing.JLabel();
         jPanelSuppliers = new javax.swing.JPanel();
         jLabelSuppliers = new javax.swing.JLabel();
         jPanelCategories = new javax.swing.JPanel();
@@ -61,6 +81,8 @@ public class systemView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnFoto = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
+        labelNameEmployee = new javax.swing.JLabel();
+        labelNameRol = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -163,7 +185,7 @@ public class systemView extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         txtEmployeeId = new javax.swing.JTextField();
-        txtEmployeeName = new javax.swing.JTextField();
+        txtEmployeeFullName = new javax.swing.JTextField();
         txtEmployeeUserName = new javax.swing.JTextField();
         cmbEmployeeRol = new javax.swing.JComboBox<>();
         jLabel28 = new javax.swing.JLabel();
@@ -341,27 +363,27 @@ public class systemView extends javax.swing.JFrame {
 
         jPanel4.add(jPanelCustomers, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 200, 35));
 
-        jPanelEmployers.setBackground(new java.awt.Color(18, 45, 61));
+        jPanelEmployees.setBackground(new java.awt.Color(18, 45, 61));
 
-        jLabelEmployers.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabelEmployers.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelEmployers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Iconos/employee.png"))); // NOI18N
-        jLabelEmployers.setText("   Empleados");
+        jLabelEmployees.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelEmployees.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelEmployees.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Iconos/employee.png"))); // NOI18N
+        jLabelEmployees.setText("   Empleados");
 
-        javax.swing.GroupLayout jPanelEmployersLayout = new javax.swing.GroupLayout(jPanelEmployers);
-        jPanelEmployers.setLayout(jPanelEmployersLayout);
-        jPanelEmployersLayout.setHorizontalGroup(
-            jPanelEmployersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelEmployersLayout.createSequentialGroup()
-                .addComponent(jLabelEmployers, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout jPanelEmployeesLayout = new javax.swing.GroupLayout(jPanelEmployees);
+        jPanelEmployees.setLayout(jPanelEmployeesLayout);
+        jPanelEmployeesLayout.setHorizontalGroup(
+            jPanelEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelEmployeesLayout.createSequentialGroup()
+                .addComponent(jLabelEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 1, Short.MAX_VALUE))
         );
-        jPanelEmployersLayout.setVerticalGroup(
-            jPanelEmployersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelEmployers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        jPanelEmployeesLayout.setVerticalGroup(
+            jPanelEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabelEmployees, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
-        jPanel4.add(jPanelEmployers, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 200, 35));
+        jPanel4.add(jPanelEmployees, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 200, 35));
 
         jPanelSuppliers.setBackground(new java.awt.Color(18, 45, 61));
 
@@ -483,7 +505,22 @@ public class systemView extends javax.swing.JFrame {
 
         btnLogout.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnLogout.setText("Salir");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
         jPanel6.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 35, -1, 30));
+
+        labelNameEmployee.setBackground(new java.awt.Color(0, 0, 0));
+        labelNameEmployee.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelNameEmployee.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel6.add(labelNameEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 30, 130, 20));
+
+        labelNameRol.setBackground(new java.awt.Color(0, 0, 0));
+        labelNameRol.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelNameRol.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel6.add(labelNameRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 60, 130, 20));
 
         getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1010, 100));
 
@@ -1198,7 +1235,7 @@ public class systemView extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtEmployeeFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtEmployeeId, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtEmployeeUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(cmbEmployeeRol, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1244,7 +1281,7 @@ public class systemView extends javax.swing.JFrame {
                             .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(25, 25, 25)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmployeeFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel25)
                             .addComponent(jLabel30)
                             .addComponent(txtEmployeeTelephone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1798,6 +1835,14 @@ public class systemView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSaleCustomerIdActionPerformed
 
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        if(evt.getSource() == btnLogout){
+            dispose();
+            LoginView login = new LoginView();
+            login.setVisible(true);
+        }
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1815,20 +1860,21 @@ public class systemView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(systemView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SystemView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(systemView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SystemView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(systemView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SystemView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(systemView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SystemView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new systemView().setVisible(true);
+                new SystemView().setVisible(true);
             }
         });
     }
@@ -1938,7 +1984,7 @@ public class systemView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     public javax.swing.JLabel jLabelCategories;
     public javax.swing.JLabel jLabelCustomers;
-    public javax.swing.JLabel jLabelEmployers;
+    public javax.swing.JLabel jLabelEmployees;
     public javax.swing.JLabel jLabelProduct;
     public javax.swing.JLabel jLabelPurchases;
     public javax.swing.JLabel jLabelReports;
@@ -1967,7 +2013,7 @@ public class systemView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     public javax.swing.JPanel jPanelCategories;
     public javax.swing.JPanel jPanelCustomers;
-    public javax.swing.JPanel jPanelEmployers;
+    public javax.swing.JPanel jPanelEmployees;
     public javax.swing.JPanel jPanelProduct;
     public javax.swing.JPanel jPanelPurchases;
     public javax.swing.JPanel jPanelReports1;
@@ -1984,10 +2030,12 @@ public class systemView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     public javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JLabel labelNameEmployee;
+    public javax.swing.JLabel labelNameRol;
     public javax.swing.JTable suppliersTable;
     public javax.swing.JTable tableAllPurchases;
     public javax.swing.JTable tableAllSales;
-    private javax.swing.JTextField txtAddressProfile;
+    public javax.swing.JTextField txtAddressProfile;
     public javax.swing.JTextField txtCategoryId;
     public javax.swing.JTextField txtCategoryName;
     public javax.swing.JTextField txtCustomerAddress;
@@ -1995,16 +2043,16 @@ public class systemView extends javax.swing.JFrame {
     public javax.swing.JTextField txtCustomerFullName;
     public javax.swing.JTextField txtCustomerId;
     public javax.swing.JTextField txtCustomerTelephone;
-    private javax.swing.JTextField txtEmailProfile;
+    public javax.swing.JTextField txtEmailProfile;
     public javax.swing.JTextField txtEmployeeAddress;
     public javax.swing.JTextField txtEmployeeEmail;
+    public javax.swing.JTextField txtEmployeeFullName;
     public javax.swing.JTextField txtEmployeeId;
-    public javax.swing.JTextField txtEmployeeName;
     public javax.swing.JPasswordField txtEmployeePassword;
     public javax.swing.JTextField txtEmployeeTelephone;
     public javax.swing.JTextField txtEmployeeUserName;
-    private javax.swing.JTextField txtIdProfile;
-    private javax.swing.JTextField txtNameProfile;
+    public javax.swing.JTextField txtIdProfile;
+    public javax.swing.JTextField txtNameProfile;
     public javax.swing.JPasswordField txtPasswordModify;
     public javax.swing.JPasswordField txtPasswordModifyConfirm;
     public javax.swing.JTextField txtProductCode;
@@ -2040,6 +2088,6 @@ public class systemView extends javax.swing.JFrame {
     public javax.swing.JTextField txtSupplierId;
     public javax.swing.JTextField txtSupplierName;
     public javax.swing.JTextField txtSupplierTelephone;
-    private javax.swing.JTextField txtTelephoneProfile;
+    public javax.swing.JTextField txtTelephoneProfile;
     // End of variables declaration//GEN-END:variables
 }

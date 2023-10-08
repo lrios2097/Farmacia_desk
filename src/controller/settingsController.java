@@ -7,7 +7,12 @@ package controller;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import views.systemView;
+import static models.EmployeesDao.addres_user;
+import static models.EmployeesDao.email_user;
+import static models.EmployeesDao.full_name_user;
+import static models.EmployeesDao.id_user;
+import static models.EmployeesDao.telephone_user;
+import views.SystemView;
 
 /**
  *
@@ -15,22 +20,34 @@ import views.systemView;
  */
 public class settingsController implements MouseListener{
     
-    private systemView views;
+    private SystemView views;
     //Constructor de esta clase
-    public settingsController(systemView views){
+    public settingsController(SystemView views){
         this.views = views;
         this.views.jLabelProduct.addMouseListener(this);
         this.views.jLabelPurchases.addMouseListener(this);
         this.views.jLabelShop.addMouseListener(this);
         this.views.jLabelCustomers.addMouseListener(this);
-        this.views.jLabelEmployers.addMouseListener(this);
+        this.views.jLabelEmployees.addMouseListener(this);
         this.views.jLabelSuppliers.addMouseListener(this);
         this.views.jLabelCategories.addMouseListener(this);
         this.views.jLabelReports.addMouseListener(this);
-        this.views.jLabelSettings.addMouseListener(this);   
+        this.views.jLabelSettings.addMouseListener(this);
+        Profile();
         
     }
     
+    //Asignar el perfil de usuario
+    public void Profile(){
+        this.views.txtIdProfile.setText("" + id_user);
+        this.views.txtNameProfile.setText(full_name_user);
+        this.views.txtAddressProfile.setText(addres_user);
+        this.views.txtTelephoneProfile.setText(telephone_user);
+        this.views.txtEmailProfile.setText(email_user);
+        
+    }
+    
+        
     @Override
     public void mouseClicked(MouseEvent e) {
         
@@ -57,8 +74,8 @@ public class settingsController implements MouseListener{
             views.jPanelShop.setBackground(new Color (152, 202, 63));
         }else if (e.getSource() == views.jLabelCustomers){
             views.jPanelCustomers.setBackground(new Color (152, 202, 63));
-        }else if (e.getSource() == views.jLabelEmployers){
-            views.jPanelEmployers.setBackground(new Color (152, 202, 63));
+        }else if (e.getSource() == views.jLabelEmployees){
+            views.jPanelEmployees.setBackground(new Color (152, 202, 63));
         }else if (e.getSource() == views.jLabelSuppliers){
             views.jPanelSuppliers.setBackground(new Color (152, 202, 63));
         }else if (e.getSource() == views.jLabelCategories){
@@ -81,8 +98,8 @@ public class settingsController implements MouseListener{
             views.jPanelShop.setBackground(new Color (18, 45, 61));
         }else if (e.getSource() == views.jLabelCustomers){
             views.jPanelCustomers.setBackground(new Color (18, 45, 61));
-        }else if (e.getSource() == views.jLabelEmployers){
-            views.jPanelEmployers.setBackground(new Color (18, 45, 61));
+        }else if (e.getSource() == views.jLabelEmployees){
+            views.jPanelEmployees.setBackground(new Color (18, 45, 61));
         }else if (e.getSource() == views.jLabelSuppliers){
             views.jPanelSuppliers.setBackground(new Color (18, 45, 61));
         }else if (e.getSource() == views.jLabelCategories){
