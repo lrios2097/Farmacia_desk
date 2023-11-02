@@ -29,7 +29,7 @@ public class CustomersDao {
     
     //Registrar Cliente
     public boolean registerCustomersQuery(Customers customer){
-        String query = "INSERT INTO customers (id, full_name, addres, telephone, email, created, updated)"
+        String query = "INSERT INTO customers (id, full_name, address, telephone, email, created, updated)"
                 + "VALUES (?,?,?,?,?,?,?)";
         Timestamp datetime = new Timestamp(new Date().getTime());
         try {
@@ -46,7 +46,7 @@ public class CustomersDao {
             return true;
             
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al registrar al cliente");
+            JOptionPane.showMessageDialog(null, "Error al registrar al cliente" + e);
             return false;
         }
     }
@@ -55,7 +55,7 @@ public class CustomersDao {
     public List listCustomerQuery(String value){
         List<Customers> list_customers= new ArrayList();
         String query = "SELECT * FROM customers";
-        String query_search_customer = "SELECT * FROM customers WHERE id= LIKE '%" + value + "'%"; //'value'
+        String query_search_customer = "SELECT * FROM customers WHERE id LIKE '%" + value + "%'"; //'value'
         
         try {
             conn = cn.getConnection();
@@ -86,7 +86,7 @@ public class CustomersDao {
     
     //Modificar CLiente
     public boolean updateCustomersQuery(Customers customer){
-        String query = "Update customers SET full_name = ?, addres = ?, telephone = ?, email = ?, updated = ?" 
+        String query = "Update customers SET full_name = ?, address = ?, telephone = ?, email = ?, updated = ?" 
                 +"WHERE id = ?" ;
         Timestamp datetime = new Timestamp(new Date().getTime());
         try {
@@ -103,22 +103,24 @@ public class CustomersDao {
             
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al modificar los datos del cliente");
+            JOptionPane.showMessageDialog(null, e.toString());
             return false;
+            
         }
     }
     
     //Eliminar Cliente
     public boolean deleteCustomerQuery(int id){
         
-        String query_delete_customer = "DELETE * FROM customers WHERE id=" + id; //'value'
+        String query_delete_customer = "DELETE FROM customers WHERE id= " + id; //'value'
         
         try {
             conn = cn.getConnection();
             pst = conn.prepareStatement(query_delete_customer);
-            rs = pst.executeQuery();
+            pst.execute();
             return true;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No puede eliminar un cliente que no tenga relación en la tabla");
+            JOptionPane.showMessageDialog(null, "No puede eliminar un cliente que no tenga relación en la tabla" + e);
         }
         return false;
     }
