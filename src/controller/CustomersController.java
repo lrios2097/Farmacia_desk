@@ -42,6 +42,7 @@ public class CustomersController implements ActionListener, MouseListener, KeyLi
         this.views.btnCancelCustomer.addActionListener(this);
         //Buscador
         this.views.txtSearchCustomer.addKeyListener(this);
+        //Jlabel de la parte lateral izquierda de la views
         this.views.jLabelCustomers.addMouseListener(this);
         //tabla click
         this.views.CustomersTable.addMouseListener(this);
