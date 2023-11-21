@@ -48,7 +48,7 @@ public class SuppliersDao {
             return true;
             
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al registrar proveedor");
+            JOptionPane.showMessageDialog(null, "Error al registrar proveedor" + e);
             return false;
         }
     }
@@ -72,11 +72,12 @@ public class SuppliersDao {
             while(rs.next()){
                 Suppliers supplier = new Suppliers(); // creo un solo supplier
                 supplier.setId(rs.getInt("id"));
-                supplier.setName(rs.getString("description"));
-                supplier.setName(rs.getString("address"));
-                supplier.setName(rs.getString("telephone"));
-                supplier.setName(rs.getString("email"));
-                supplier.setName(rs.getString("city"));
+                supplier.setName(rs.getString("name"));
+                supplier.setDescription(rs.getString("description"));
+                supplier.setAddress(rs.getString("address"));
+                supplier.setTelephone(rs.getString("telephone"));
+                supplier.setEmail(rs.getString("email"));
+                supplier.setCity(rs.getString("city"));
                 list_suppliers.add(supplier);      
             }
                
@@ -89,7 +90,7 @@ public class SuppliersDao {
     
     // Modificar poveedor
     public boolean updateSupplierQuery(Suppliers supplier){
-        String query = "UPDATE SET name = ?, description = ?, address = ?, telephone = ?, email = ?, city = ?, updated = ?,"
+        String query = "UPDATE suppliers SET name = ?, description = ?, address = ?, telephone = ?, email = ?, city = ?, updated = ?"
                 + "WHERE id= ?";
         Timestamp datetime = new Timestamp(new Date().getTime());
         
@@ -108,7 +109,7 @@ public class SuppliersDao {
             return true;
             
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al modificar los datos del proveedor");
+            JOptionPane.showMessageDialog(null, "Error al modificar los datos del proveedor" + e);
             return false;
         }
     }

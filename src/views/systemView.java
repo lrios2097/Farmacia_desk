@@ -6,6 +6,7 @@ package views;
 
 import controller.CustomersController;
 import controller.EmployeesController;
+import controller.SuppliersController;
 import controller.settingsController;
 import models.Customers;
 import models.CustomersDao;
@@ -13,6 +14,8 @@ import models.Employees;
 import models.EmployeesDao;
 import static models.EmployeesDao.full_name_user;
 import static models.EmployeesDao.rol_user;
+import models.Suppliers;
+import models.SuppliersDao;
 
 /**
  *
@@ -30,6 +33,11 @@ public class SystemView extends javax.swing.JFrame {
     //Cliente
     Customers customer = new Customers();
     CustomersDao customersDao = new CustomersDao();
+    
+    //Proveedores
+    Suppliers suppliers = new Suppliers();
+    SuppliersDao suppliersDao = new SuppliersDao();
+    
     public SystemView() {
         initComponents();
         setSize(1208,680);
@@ -49,6 +57,9 @@ public class SystemView extends javax.swing.JFrame {
         CustomersController customer_account = new CustomersController(customer, customersDao, this); //(class customer, Dao, vista this en este caso)
         customer_account.listAllCustomers(); // lamo del controller que aqui llamamos customer acount su metodo llamado listAllCustomers
         
+        //Controlador de proveedores
+        SuppliersController supplier_account = new SuppliersController (suppliers, suppliersDao, this);
+        supplier_account.listAllSuppliers();
     }
     
     public String titleInterface(){
